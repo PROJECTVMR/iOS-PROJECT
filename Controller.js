@@ -51,7 +51,7 @@ function goBackToCard(){
 function TakeGradData(){
     const numberCardCreate = document.querySelector(".number-card-create");
     const currentNameCreate = document.querySelector(".current-name-create");
-    const currentSurnameCreate= document.querySelector(".current-surname-create");
+    const currentSurnameCreate = document.querySelector(".current-surname-create");
     const currentSsidCreate = document.querySelector(".current-ssid-create");
     
     let CurentNum = escapeHtml(numberCardCreate.value);
@@ -59,15 +59,23 @@ function TakeGradData(){
     let ssdCurrent = escapeHtml(currentSsidCreate.value);
 
     let currentCard = new Card(CurentNum, currentName, ssdCurrent);
-    ListCard.push(currentCard);
-    card.classList.add("active");
-    form.classList.remove("active");
-    localStorage.setItem("ListCard", JSON.stringify(ListCard));
+    console.log(currentCard)
+ 
+    try {
+        ListCard.push(currentCard);
+        card.classList.add("active");
+        form.classList.remove("active");
+        localStorage.setItem("ListCard", JSON.stringify(ListCard));
+    } catch (error) {
+        console.log(error)
+    }
+    
 
 }
 
 
 function displayCard(){
+    ListCard = JSON.parse(localStorage.getItem("ListCard"));
     //les variables contenant les class de la carte
     const number = document.querySelector(".number");
     const namem = document.querySelector(".name");
@@ -77,7 +85,9 @@ function displayCard(){
     const num =  escapeHtml(numberSearchCard.value) ; 
 
     ListCard.forEach(AnotherCard => {
+
         if(parseInt(AnotherCard.number) === parseInt(num)){
+            console.log("Perfectly executed...!!!")
             number.textContent = AnotherCard.id;
             namem.textContent = AnotherCard.name;
             strip.textContent = AnotherCard.number;

@@ -16,7 +16,7 @@ class Card {
 let card1 = new Card(222, "Man", 3);
 let ListCard = [];
 ListCard.push(card1); //initialisation of the array 
-ListCard = JSON.parse(localStorage.getItem("ListCard"));
+
 
 
 
